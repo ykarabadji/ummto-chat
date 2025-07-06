@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      background-color: #e0e0e0;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      width: 300px;
+      margin: 100px auto;
+      padding: 20px;
+      background: #fff;
+      border: 2px solid #000;
+      box-shadow: 5px 5px 0px #999;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #000;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #555;
+    }
+    p {
+      text-align: center;
+      margin-top: 15px;
+    }
+    a {
+      color: #333;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Login</h2>
+   
+      <input id="email" type="email" name="emailadresse" placeholder="email" required />
+      <input id="password" type="password" name="password" placeholder="Password" required />
+      <button id="login_button" type="submit">Login</button>
+    
+    <p>Don't have an account? <a href="register.html">Register</a></p>
+    <script type="module" src="../userauthconfig/login.js"></script>
+  </div>
+</body>
+</html>

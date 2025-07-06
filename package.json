@@ -1,0 +1,49 @@
+{
+  "name": "chatpp",
+  "version": "1.0.0",
+  "main": "./source/appelectron.js",
+  "description": "A chat app for students",
+  "author": "Yani",
+  "homepage": "https://github.com/ykarabadji/ummto-chat-app",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "start": "electron --trace-warnings .",
+    "build": "electron-builder",
+    "build:linux": "electron-builder --linux",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+
+  ,
+  "build": {
+    "appId": "com.yourname.chatpp",
+    "productName": "ChatPP",
+    "files": [
+      "**/*",
+      "!dist"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Utility",
+      "maintainer": "Your Name",
+      "icon": "assets/icon.png"
+    }
+  },
+  "dependencies": {
+    "firebase": "^11.9.1",
+    "firebase-admin": "^13.4.0",
+    "ws": "^8.18.2"
+  },
+  "devDependencies": {
+    "electron": "^36.5.0",
+    "electron-builder": "^26.0.12",
+    "electron-reload": "^2.0.0-alpha.1"
+  }
+}
+

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <style>
+    body {
+      background-color: #e0e0e0;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      width: 300px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border: 2px solid #000;
+      box-shadow: 5px 5px 0px #999;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #000;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #555;
+    }
+    p {
+      text-align: center;
+      margin-top: 15px;
+    }
+    a {
+      color: #333;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Register</h2>
+    <input id="email" type="email" placeholder="University Email" required />
+    <input id="password" type="password" placeholder="Password" required />
+    <input id="password2" type="password" placeholder="Confirm Password" required />
+
+    <select id="department-id" required>
+      <option value="" disabled selected>-- Choisissez une faculté --</option>
+      <option value="faculte de genie electrique et informatique">faculte de genie electrique et informatique</option>
+      <option value="faculte des sciences">faculte des sciences</option>
+      <option value="faculte des sciences biologiaues et agronomiques">faculte des sciences biologiaues et agronomiques</option>
+      <option value="faculte du genie de la construction">faculte du genie de la construction</option>
+      <option value="faculte de medecine">faculte de medecine</option>
+      <option value="faculte de droit des sciences politiques">faculte de droit des sciences politiques</option>
+      <option value="faculte des lettres et des langues">faculte des lettres et des langues</option>
+      <option value="faculte des sciences economique commerciale et gestion">faculte des sciences economique commerciale et gestion</option>
+      <option value="faculte des sciences humaines et sociales">faculte des sciences humaines et sociales</option>
+    </select>
+
+    <select id="specialities-id" required>
+      <option value="">-- Choisissez une spécialité --</option>
+    </select>
+
+    <select id="years-each-speciality" required>
+      <option value="L1">L1</option>
+      <option value="L2">L2</option>
+      <option value="L3">L3</option>
+      <option value="M1">M1</option>
+      <option value="M2">M2</option>
+    </select>
+
+    <button id="register_button" type="submit">Register</button>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+    <script type="module" src="../userauthconfig/register.js"></script>
+    <script>
+      const departments = {
+        "faculte de genie electrique et informatique": 1,
+        "faculte des sciences": 2,
+        "faculte des sciences biologiaues et agronomiques": 3,
+        "faculte du genie de la construction": 4,
+        "faculte de medecine": 5,
+        "faculte de droit des sciences politiques": 6,
+        "faculte des lettres et des langues": 7,
+        "faculte des sciences economique commerciale et gestion": 8,
+        "faculte des sciences humaines et sociales": 9,
+      };
+
+      const department_year_speciality = {
+        1: ["Automatique", "Electrotechnique", "Telecommunications", "Electronique", "Informatique", "GenieBiomedical"],
+        2: ["Mathématiques", "Physique", "Chimie"],
+        3: ["Agronomie", "Biotechnologie"],
+        4: ["Génie civil", "Génie mécanique"],
+        5: ["Médecine générale", "Pharmacie"],
+        6: ["Droit privé", "Science politique"],
+        7: ["Langue française", "Langue anglaise"],
+        8: ["Gestion", "Finance", "Marketing"],
+        9: ["Sociologie", "Psychologie"],
+      };
+
+      const departmentsCall = document.getElementById("department-id");
+      const specialitiesCall = document.getElementById("specialities-id");
+
+      departmentsCall.addEventListener("change", () => {
+        const selectedDepartment = departmentsCall.value.trim();
+        specialitiesCall.innerHTML = '<option value="">-- Choisissez une spécialité --</option>';
+
+        if (departments.hasOwnProperty(selectedDepartment)) {
+          const id = departments[selectedDepartment];
+          const specialities = department_year_speciality[id];
+
+          specialities.forEach((spec) => {
+            const option = document.createElement("option");
+            option.value = spec;
+            option.textContent = spec;
+            specialitiesCall.appendChild(option);
+          });
+        }
+      });
+    </script>
+  </div>
+</body>
+</html>
+
