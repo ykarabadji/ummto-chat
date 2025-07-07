@@ -12,9 +12,7 @@
     "build": "electron-builder",
     "build:linux": "electron-builder --linux",
     "test": "echo \"Error: no test specified\" && exit 1"
-  }
-
-  ,
+  },
   "build": {
     "appId": "com.yourname.chatpp",
     "productName": "ChatPP",
@@ -29,13 +27,17 @@
       "target": "nsis"
     },
     "linux": {
-      "target": ["AppImage", "deb"],
+      "target": [
+        "AppImage",
+        "deb"
+      ],
       "category": "Utility",
       "maintainer": "Your Name",
       "icon": "assets/icon.png"
     }
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.50.3",
     "firebase": "^11.9.1",
     "firebase-admin": "^13.4.0",
     "ws": "^8.18.2"
@@ -46,4 +48,3 @@
     "electron-reload": "^2.0.0-alpha.1"
   }
 }
-

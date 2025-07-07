@@ -8,6 +8,7 @@ const ws = new WebSocket('ws://localhost:8080');
 ws.onopen = ()=>{
     
     console.log('connected to the server successfully');
+    ws.send(JSON.stringify({type:'load-old',clientChannel:chat_name}));
 };
 
 
@@ -15,7 +16,13 @@ ws.onmessage = (server_data)=>{
     
     //console.log(server_data.data);
     const server_response = JSON.parse(server_data.data)
-    addMessage(server_response,'other');
+     if (server_response.type === 'old-messages') {
+  server_response.data.forEach((db_data) => {
+    addMessage({ message: db_data.msg, senderName: db_data.sender }, 'other');
+  });
+} else {
+  addMessage(server_response, 'other');
+}
 }
 
 window.onload = () => {
@@ -35,7 +42,7 @@ window.onload = () => {
     const client_data = {
       message :our_message,
       fullName : full_name,
-      clientChannel : channel,
+      clientChannel : 'global chat',
       chatName : chat_name
 
     }
@@ -65,8 +72,11 @@ global_chat_button.addEventListener('click',()=>{
 
 
 function addMessage(text, sender) {
-  
-const full_name = localStorage.getItem("fullName");
+ const full_name = localStorage.getItem("fullName");
+ 
+
+   
+
 
   const box = document.getElementById('chat-box');
 
@@ -80,8 +90,7 @@ const full_name = localStorage.getItem("fullName");
   nameElement.style.fontSize = '14px';
   nameElement.style.marginBottom = '4px';
 
-    if (sender === 'me') {
-      console.log('yeahhh it is meee ')
+  if (sender === 'me') {
     nameElement.textContent = full_name;
   } else {
     nameElement.textContent = text.senderName; // optional, update later
@@ -89,7 +98,7 @@ const full_name = localStorage.getItem("fullName");
 
   // Add message text
   const textElement = document.createElement('div');
-  textElement.textContent = text.message || text;
+  textElement.textContent = text.message || text  ;
 
   msgContainer.appendChild(nameElement);
   msgContainer.appendChild(textElement);

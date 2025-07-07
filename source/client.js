@@ -8,6 +8,8 @@ const ws = new WebSocket('ws://localhost:8080');
 ws.onopen = ()=>{
     
     console.log('connected to the server successfully');
+    const channel = localStorage.getItem("channel");
+    ws.send(JSON.stringify({type:'load-old',clientChannel:channel}));
 };
 
 
@@ -15,7 +17,19 @@ ws.onmessage = (server_data)=>{
     
     //console.log(server_data.data);
     const server_response = JSON.parse(server_data.data)
-    addMessage(server_response,'other');
+    console.log(server_response);
+    if (server_response.type === 'old-messages') {
+  server_response.data.forEach((db_data) => {
+    addMessage({ message: db_data.msg, senderName: db_data.sender }, 'other');
+  });
+} else {
+  if(server_response.current_chat === 'global chat'){
+    return ;
+  }else{addMessage(server_response, 'other');}
+  
+}
+
+    
 }
 
 window.onload = () => {
@@ -30,12 +44,17 @@ window.onload = () => {
   chat_name_title.innerText = `${channel} discussion`;
   button.addEventListener('click', () => {
     const our_message = input.value;
+    if (our_message.trim() === '') return;
+
     
     
     const client_data = {
       message :our_message,
+      // we need the full name to deisplay it on top of each client message 
       fullName : full_name,
+      //sending the channel so the server know which users receives the messages (users from one group class )
       clientChannel : channel,
+      // the chat_name is used by the server to check wether the message is comming from a global chat or group class chat 
       chatName : chat_name
 
     }
@@ -91,7 +110,7 @@ function addMessage(text, sender) {
 
   // Add message text
   const textElement = document.createElement('div');
-  textElement.textContent = text.message || text;
+  textElement.textContent = text.message || text  ;
 
   msgContainer.appendChild(nameElement);
   msgContainer.appendChild(textElement);
