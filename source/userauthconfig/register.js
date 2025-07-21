@@ -14,14 +14,9 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyBNJ-ty_T7cMfcCX81oVDSTmyTrAfz6sMo",
-  authDomain: "chatpp-50ee8.firebaseapp.com",
-  projectId: "chatpp-50ee8",
-  storageBucket: "chatpp-50ee8.firebasestorage.app",
-  messagingSenderId: "776544732197",
-  appId: "1:776544732197:web:3027f330ef88ffc30eabcc"
-};
+/*
+firebase config here
+*/
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
