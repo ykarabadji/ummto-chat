@@ -1,3 +1,8 @@
+// register.js
+// ------------
+// Handles user registration logic using Firebase Authentication and Firestore.
+// Collects user info, validates input, and saves user/channel data to Firestore.
+
 // Import the functions you need from the SDKs you need
 // ✅ Use ES module import from Firebase CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -23,6 +28,7 @@ const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
 
+// Collect DOM elements for user input
 const email_input = document.getElementById('email');
 const password_input= document.getElementById('password');
 const password2_input = document.getElementById('password2');
@@ -34,6 +40,7 @@ const year_input = document.getElementById('years-each-speciality');
 
 const auth = getAuth(app);
 
+// Register new user with email and password
 async function registerUser() {
   const email = email_input.value.trim();
   const password = password_input.value.trim();
@@ -42,14 +49,16 @@ async function registerUser() {
   const speciality = speciality_input.value.trim();
   const year = year_input.value.trim();
 
+  // Validate password confirmation
   if (password !== password2) {
     alert("Passwords do not match.");
     return;
   }
    const channel = `${department}/${speciality}/${year}`;
   try {
-    
+    // Create user with Firebase Authentication
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+       // Save user data to Firestore
        await setDoc(doc(db, "users",userCredential.user.uid), {
       email,
       channel
@@ -64,6 +73,7 @@ async function registerUser() {
 }
 
 
+// Add event listener to registration button
 const register_button =  document.getElementById('register_button');
 register_button.addEventListener('click',()=>{
     registerUser();

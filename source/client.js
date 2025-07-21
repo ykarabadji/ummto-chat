@@ -1,5 +1,8 @@
+// client.js
+// ---------
+// Handles the client-side logic for group class chat.
+// Manages WebSocket connection, message sending/receiving, and UI updates for group chats.
 
-//const {full_name} = require("./module");
 const chat_name = "group class chat";
 
 const ws = new WebSocket('ws://localhost:8080');
