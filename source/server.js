@@ -7,7 +7,7 @@ import { WebSocketServer } from "ws";
 import { createClient } from "@supabase/supabase-js";
 
 // Initialize Supabase client for message storage
-const supabase = createClient('https://nedideoenoyacsjsgamd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5lZGlkZW9lbm95YWNzanNnYW1kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5MDgxOTIsImV4cCI6MjA2NzQ4NDE5Mn0.db_NOXMpTU4z9qAvFlxWpbzyBsvdv4fJFH3g9K5-kGw')
+const supabase = createClient('https://nedideoenoyacsjsgamd.supabase.co', ' your supabase anon key here ')
 
 const wss = new WebSocketServer({ port: 8080 });
 const channel_clients_map = new Map(); // Map each client to their channel
