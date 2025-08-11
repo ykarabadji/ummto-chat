@@ -1,6 +1,6 @@
 🟦 ummto-chat
 
-    A student-focused chat app built with ❤️ by Yani Karabadji, a CS student at UMMTO University.
+    A student-focused chat app built  by Yani Karabadji, a CS student at UMMTO University.
 
 Tired of distractions like Instagram (#reels, etc.), I created this app to help students chat, collaborate, and create class groups — all in a focused academic space.
 🚀 Getting Started
@@ -71,4 +71,4 @@ If you'd like to contribute, here are some key features I plan to add. Please fo
 I built this to help students stay focused and collaborate more efficiently.
 If you want to contribute — thank you in advance!
 
-Feel free to fork, clone, and suggest improvements ❤️# ummto-chat
+Feel free to fork, clone, and suggest improvements # ummto-chat
